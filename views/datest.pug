@@ -1,0 +1,40 @@
+extends base
+
+block content
+  section.section-header
+    .header__hero
+      .header__hero-overlay &nbsp;
+      img.header__hero-img(src=`/uploads/testler/${datest.imageUrls[0].filename}`, alt=`${datest.name}`)
+
+    .heading-box
+      h1.heading-primary
+        span= `${datest.name} DaTest`
+      .heading-box__group
+        .heading-box__detail
+          svg.heading-box__icon
+            use(xlink:href='/img/icons.svg#icon-map-pin')
+          span.heading-box__text= datest.aciklama
+
+  section.section-description
+    h2.heading-secondary.ma-bt-lg Categories
+      each category in datest.categories
+        .overview-box__detail
+          span.overview-box__text= category.name   
+
+    .description-box
+      h2.heading-secondary.ma-bt-lg= `About ${datest.name} test`
+        p.description__text= datest.aciklama
+
+  section.section-pictures
+    each img, i in datest.imageUrls
+      .picture-box
+        img.picture-box__img(src=`/uploads/testler/${img}`, alt=`${datest.name} ${i + 1}`, class=`picture-box__img--${i + 1}`)
+
+
+  section.section-cta
+      .cta__content
+        h2.heading-secondary What are you waiting for?
+        if user
+          button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${datest.id}`) Book tour now!
+        else
+          a.btn.btn--green.span-all-rows(href='/login') Log in to book tour

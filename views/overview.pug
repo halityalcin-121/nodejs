@@ -1,0 +1,25 @@
+extends base
+
+block content
+  main.main
+    .card-container
+    
+      each datest in datests
+        .card
+          .card__header
+            .card__picture
+              .card__picture-overlay &nbsp;
+              img.card__picture-img(src=`/uploads/testler/${datest.imageUrls[0].filename}`, alt=`${datest.name}`)
+            h3.heading-tertirary
+              span= datest.name
+
+          .card__details
+            p.card__text= datest.aciklama
+           
+          .card__footer
+            p
+              span.card__footer-value= datest.createdDate.toLocaleString('tr-TR',{month:'long',year:'numeric'})
+              | 
+              span.card__footer-text tarihinde olusturuldu.
+            p.card__ratings 
+            a.btn.btn--green.btn--small(href=`/datest/${datest._id}`) Details
